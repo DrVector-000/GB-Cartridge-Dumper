@@ -7,4 +7,4 @@ E' composto da Hardware e software studiati per il backup di cartucce di gioco d
 La componente Hardware utilizza la scheda Arduino come controllore e degli Shift Register 74HC595 per estenderne gli I/O. Mentre la parte software è formata dal firmware caricato sull'Arduino ed un client Windows in C# per .Net Framework.
 
 
-![alt text](https://github.com/DrVector-000/GB-Cartridge-Dumper/blob/main/Docs/GB%20Cartridge%20Dumper%20001.JPG?raw=true)
+![alt text](https://github.com/DrVector-000/GB-Cartridge-Dumper/blob/main/Images/GB%20Cartridge%20Dumper%20001.JPG?raw=true)
