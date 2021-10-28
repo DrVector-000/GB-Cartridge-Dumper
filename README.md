@@ -1,6 +1,6 @@
 # GB Cartridge Dumper
 
-Progetto che nasce in un contesto più ampio di conservazione della tecnologia software e hardware dei primi anni dell'informatica applicata a dispositivi di gioco.
+Il progetto nasce in un contesto più ampio di conservazione della tecnologia software e hardware dei primi anni dell'informatica applicata a dispositivi di gioco.
 
 E' composto da Hardware e software studiati per il backup di cartucce di gioco della console portatile Game Boy e Game Boy Color.
 
