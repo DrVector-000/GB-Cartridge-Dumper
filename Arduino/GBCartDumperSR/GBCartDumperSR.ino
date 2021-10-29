@@ -1,6 +1,6 @@
 /*  
   GBCartDumperSR.ino - Game Boy Cartridge Dumper
-  Autore: DrVector
+  Copyright (C) 2021 DrVector
   Utilizza 74HC595 shift registers
 */
 
