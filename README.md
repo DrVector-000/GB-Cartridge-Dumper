@@ -8,3 +8,6 @@ La componente Hardware utilizza la scheda Arduino Nano (ATMega328P) come control
 
 
 ![alt text](https://github.com/DrVector-000/GB-Cartridge-Dumper/blob/main/Images/GB%20Cartridge%20Dumper%20001.JPG?raw=true)
+
+## License
+[MIT](https://github.com/DrVector-000/GB-Cartridge-Dumper/blob/main/LICENSE.txt)
