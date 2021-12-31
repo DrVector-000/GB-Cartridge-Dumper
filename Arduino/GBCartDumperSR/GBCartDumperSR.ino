@@ -4,25 +4,11 @@
   Utilizza 74HC595 shift registers
 */
 
-//******************************************************************************************************************//
-//* Costanti
-//******************************************************************************************************************//
-// Pin SRCLK del SN74HC595
-// Shift Register Clock - INPUT
-const int SN_SRCLK_PIN = 12;
-// Pin SER del SN74HC595
-// Serial Data In - INPUT
-const int SN_SER_PIN = 10;
-// Pin RCLK del SN74HC595
-// Storage Register Clock - INPUT
-const int SN_RCLK_PIN = 11;
-
-// Pin RD del connettore GB
-const int GB_RD_PIN = A1;
-// Pin WR del connettore GB
-const int GB_WR_PIN = A2;
-// Pin MREQ del connettore GB
-const int GB_MREQ_PIN = A0;
+#include <Arduino.h>
+#include "Const.h"
+#include "SRHelper.h"
+#include "GBHelper.h"
+#include "GBHeader.h"
 
 //******************************************************************************************************************//
 //* Variabili globali
@@ -43,7 +29,7 @@ void setup() {
   pinMode(GB_WR_PIN, OUTPUT);
   pinMode(GB_MREQ_PIN, OUTPUT); 
 
-  // Inizializza il lettura
+  // Inizializza in lettura
   digitalWrite(GB_RD_PIN, LOW); 
   digitalWrite(GB_WR_PIN, HIGH);
   digitalWrite(GB_MREQ_PIN, HIGH);
@@ -54,11 +40,7 @@ void setup() {
   }
 
   // Azzera lo shift register
-  shiftOut(SN_SER_PIN, SN_SRCLK_PIN, MSBFIRST, 0);
-  shiftOut(SN_SER_PIN, SN_SRCLK_PIN, MSBFIRST, 0);
-  digitalWrite(SN_RCLK_PIN, LOW);
-  asm volatile("nop");
-  digitalWrite(SN_RCLK_PIN, HIGH);
+  addressWrite(0x0000);
 
   Serial.begin(115200);
   Serial.println("GAME BOY CARTRIDGE DUMPER V.1.00");
@@ -77,7 +59,7 @@ void loop() {
 }
 
 //******************************************************************************************************************//
-//* Comandi di configurazione
+//* Comandi
 //******************************************************************************************************************//
 // Parsing dei comandi
 void ParseComands(String s) {
@@ -114,7 +96,7 @@ void ParseComands(String s) {
       GetComandParams(s, params);
       // Serial.println("PARAM: " + params[0]);
       if (params[0] == "?") {
-        Serial.println("+VERSION=0.001b");
+        Serial.println("+VERSION=0.011b");
       }
     }
     //**********************************************
@@ -137,6 +119,17 @@ void ParseComands(String s) {
       if (params[0] == "?") {
         String s = readCartTitle();
         Serial.println("+GETTITLE=" + s);
+      }
+    }
+    //**********************************************
+    // GETCODE
+    //**********************************************
+    if (comand == "GETCODE") {
+      GetComandParams(s, params);
+      // Serial.println("PARAM: " + params[0]);
+      if (params[0] == "?") {
+        String s = readCartCode();
+        Serial.println("+GETCODE=" + s);
       }
     }
     //**********************************************
@@ -191,6 +184,17 @@ void ParseComands(String s) {
       // Serial.println("PARAM: " + params[0]);
       if (params[0] != "") {
         dumpROMBank(params[0].toInt());
+        Serial.println("+++");
+      }
+    }
+    //**********************************************
+    // DUMPRAM
+    //**********************************************
+    if (comand == "DUMPRAM") {
+      GetComandParams(s, params);
+      // Serial.println("PARAM: " + params[0]);
+      if (params[0] != "") {
+        dumpRAM();
         Serial.println("+++");
       }
     }
@@ -253,92 +257,6 @@ String ReadSerialComand(){
   }
   
   return "";
-}
-
-//******************************************************************************************************************//
-//* Scrittura indirizzo 16 bit tramite shift register
-//******************************************************************************************************************//
-void registerWrite(unsigned int value) {
-  byte b1 = 0;
-  byte b2 = 0;
-
-  b1 = value & 0xFF;
-  b2 = value >> 8;
-  // Serial.println("b1=" + String(b1));
-  // Serial.println("b2=" + String(b2));
-
-  digitalWrite(SN_RCLK_PIN, LOW);
-  shiftOut(SN_SER_PIN, SN_SRCLK_PIN, MSBFIRST, b2);
-  shiftOut(SN_SER_PIN, SN_SRCLK_PIN, MSBFIRST, b1);
-  digitalWrite(SN_RCLK_PIN, HIGH);
-  // delayMicroseconds(200);
-}
-
-//******************************************************************************************************************//
-//* Lettura di un byte all'indirizzo selezionato
-//******************************************************************************************************************//
-byte readByte(unsigned int address) {
-  // Imposta indirizzo
-  registerWrite(address);
-  
-  digitalWrite(GB_RD_PIN, LOW);
-    
-  // Imposta D1/D9 in INPUT
-  for (int i = 2; i <= 9; i++) {
-    pinMode(i, INPUT);
-  }
-  
-  // Lettura pins D2/D9
-  byte bval = 0;
-  for (int y = 0; y < 8; y++) {
-    bitWrite(bval, y, digitalRead(y + 2));
-  }
-  
-  digitalWrite(GB_RD_PIN, HIGH);
-
-  // Serial.println("readByte=" + (String)bval);
-  return bval;
-}
-
-//******************************************************************************************************************//
-//* Lettura titolo del gioco
-//******************************************************************************************************************//
-String readCartTitle() {
-  char title[15];
-  for (int i = 0; i < 15; i++) {
-    unsigned int addr = 0x0134 + i;
-    title[i] = (char)readByte(addr);
-  }
-  title[15] = '\0';
-
-  return title;
-}
-
-//******************************************************************************************************************//
-//* Lettura tipo cartuccia
-//******************************************************************************************************************//
-int readCartType() {
-  int cartType = readByte(0x0147);
-
-  return cartType;
-}
-
-//******************************************************************************************************************//
-//* Lettura dimensione ROM
-//******************************************************************************************************************//
-int readROMSize() {
-  int romSize = readByte(0x0148);
-
-  return romSize;
-}
-
-//******************************************************************************************************************//
-//* Lettura dimensione RAM
-//******************************************************************************************************************//
-int readRAMSize() {
-  int ramSize = readByte(0x0149);
-
-  return ramSize;
 }
 
 //******************************************************************************************************************//
@@ -415,7 +333,7 @@ void dumpROM() {
 
 // Select the ROM bank by writing the bank number on the data pins
 void selectROMBank(int bank) {
-  registerWrite(0x2100);
+  addressWrite(0x2100);
 
   bankSelect(bank); // Select the bank
   digitalWrite(GB_WR_PIN, LOW); // WR on
@@ -444,4 +362,132 @@ void bankSelect(int bank) {
       digitalWrite(z, LOW);
     }
   }
+}
+
+//******************************************************************************************************************//
+//* Numero blocchi RAM
+//******************************************************************************************************************//
+int GetRAMBanks() {
+  int ramBanks = 0; // Default no RAM banks
+  int ramSize = readRAMSize();
+  /*
+  int cartridgeType = readCartType();
+  
+  if (romSize == 1) { romBanks = 4; } 
+  if (romSize == 2) { romBanks = 8; } 
+  if (romSize == 3) { romBanks = 16; } 
+  if (romSize == 4) { romBanks = 32; } 
+  if (romSize == 5 && (cartridgeType == 1 || cartridgeType == 2 || cartridgeType == 3)) { romBanks = 63; } 
+  else if (romSize == 5) { romBanks = 64; } 
+  if (romSize == 6 && (cartridgeType == 1 || cartridgeType == 2 || cartridgeType == 3)) { romBanks = 125; } 
+  else if (romSize == 6) { romBanks = 128; }
+  if (romSize == 7) { romBanks = 256; }
+  if (romSize == 82) { romBanks = 72; }
+  if (romSize == 83) { romBanks = 80; }
+  if (romSize == 84) { romBanks = 96; }
+  */
+  return ramBanks; 
+}
+
+//******************************************************************************************************************//
+//* Lettura di un byte all'indirizzo selezionato (RAM)
+//******************************************************************************************************************//
+byte readRAMByte(unsigned int address) {
+  // Imposta indirizzo
+  addressWrite(address);
+  
+  // Imposta D1/D9 in INPUT
+  for (int i = 2; i <= 9; i++) {
+    pinMode(i, INPUT);
+  }
+  
+  digitalWrite(GB_MREQ_PIN, LOW);
+  digitalWrite(GB_RD_PIN, LOW);
+
+  // Lettura pins D2/D9
+  byte bval = 0;
+  for (int y = 0; y < 8; y++) {
+    bitWrite(bval, y, digitalRead(y + 2));
+  }
+  
+  digitalWrite(GB_MREQ_PIN, HIGH);
+  digitalWrite(GB_RD_PIN, HIGH);
+
+  // Serial.println("readByte=" + (String)bval);
+  return bval;
+}
+
+void selectRAMBank(int bank) {
+  addressWrite(0x4000);
+
+  bankSelect(bank); // Select the bank
+  digitalWrite(GB_WR_PIN, LOW); // WR on
+  digitalWrite(GB_WR_PIN, HIGH); // WR off
+   
+  // Reset outputs to LOW and change back to inputs
+  for (int i = 2; i <= 9; i++) {
+    digitalWrite(i, LOW);
+    pinMode(i, INPUT);
+  }
+}
+
+//******************************************************************************************************************//
+//* Dump RAM
+//******************************************************************************************************************//
+void dumpRAM() {
+    Serial.println("START RAM DUMP");
+
+    unsigned int addr = 0x0000;
+    int ramSize = readRAMSize();
+    
+    // Disattiva READ, WRITE e MREQ
+    digitalWrite(GB_RD_PIN, HIGH); // RD off
+    digitalWrite(GB_WR_PIN, HIGH); // WR off
+    digitalWrite(GB_MREQ_PIN, HIGH); // MREQ off
+
+    // Imposta indirizzo 0x0000
+    addressWrite(addr);
+    delay(1);
+  
+    // Imposta D0-D7 in OUTPUT
+    for (int l = 2; l <= 9; l++) {
+      pinMode(l, OUTPUT);
+    }
+
+    // Inizializza MBC: 0x0A
+    digitalWrite(3, HIGH);
+    digitalWrite(5, HIGH);
+    digitalWrite(GB_WR_PIN, LOW); // WR on
+    digitalWrite(GB_WR_PIN, HIGH); // WR off
+
+    // Azzera D0-D7 ed imposta in INPUT
+    for (int l = 2; l <= 9; l++) {
+      digitalWrite(l, LOW);
+      pinMode(l, INPUT);
+    }
+      
+    if (ramSize > 0) {
+      // 2 KBytes RAM
+      if (ramSize == 1) {
+
+      }
+      // 8 KBytes RAM
+      else if (ramSize == 2) {
+        addr = 0xA000;
+        selectRAMBank(0);
+        for (; addr <= 0xBFFF; addr++) { 
+          byte bval = readRAMByte(addr);
+          Serial.println(bval, DEC);
+        }
+      }
+      // RAM banks
+      else {
+
+      }
+    }
+    else {
+      Serial.println("NO RAM");
+    }
+
+    Serial.println("END RAM DUMP");
 }
