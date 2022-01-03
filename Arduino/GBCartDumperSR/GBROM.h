@@ -1,18 +1,18 @@
 /*  
   GBCartDumperSR.ino - Game Boy Cartridge Dumper
-  Copyright (C) 2021 DrVector
+  Copyright (C) 2021-2022 DrVector
   
-  Helper funzioni di gestione bus dati e control pins della cartuccia Game Boy
+  Gestione ROM della cartuccia Game Boy
 */
 
 #include <Arduino.h>
 
 //******************************************************************************************************************//
-//* Lettura di un byte all'indirizzo selezionato dal bus dati della cartuccia
+//* Numero blocchi ROM
 //******************************************************************************************************************//
-byte readByte(unsigned int address, bool ram);
+int GetROMBanks();
 
 //******************************************************************************************************************//
-//* Scrittura di un byte all'indirizzo selezionato nel bus dati della cartuccia
+//* Dump ROM bank
 //******************************************************************************************************************//
-void writeByte(unsigned int address, byte data);
+void dumpROMBank(int bank);

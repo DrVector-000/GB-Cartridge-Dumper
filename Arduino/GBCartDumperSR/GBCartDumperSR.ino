@@ -1,6 +1,6 @@
 /*  
   GBCartDumperSR.ino - Game Boy Cartridge Dumper
-  Copyright (C) 2021 DrVector
+  Copyright (C) 2021-2022 DrVector
   Utilizza 74HC595 shift registers
 */
 
@@ -9,6 +9,8 @@
 #include "SRHelper.h"
 #include "GBHelper.h"
 #include "GBHeader.h"
+#include "GBROM.h"
+#include "GBRAM.h"
 
 //******************************************************************************************************************//
 //* Variabili globali
@@ -96,7 +98,7 @@ void ParseComands(String s) {
       GetComandParams(s, params);
       // Serial.println("PARAM: " + params[0]);
       if (params[0] == "?") {
-        Serial.println("+VERSION=0.011b");
+        Serial.println("+VERSION=0.012b");
       }
     }
     //**********************************************
@@ -106,7 +108,7 @@ void ParseComands(String s) {
       GetComandParams(s, params);
       //Serial.println("PARAM: " + params[0]);
       if (params[0] != "") {
-        byte b = readByte(params[0].toInt());
+        byte b = readByte(params[0].toInt(), false);
         Serial.println("+READBYTE=" + (String)b);
       }
     }
@@ -130,6 +132,17 @@ void ParseComands(String s) {
       if (params[0] == "?") {
         String s = readCartCode();
         Serial.println("+GETCODE=" + s);
+      }
+    }
+    //**********************************************
+    // GETCGBSUPPORT
+    //**********************************************
+    if (comand == "GETCGBSUPPORT") {
+      GetComandParams(s, params);
+      // Serial.println("PARAM: " + params[0]);
+      if (params[0] == "?") {
+        int i = readCGBSupportCode();
+        Serial.println("+GETCGBSUPPORT=" + (String)i);
       }
     }
     //**********************************************
@@ -188,13 +201,24 @@ void ParseComands(String s) {
       }
     }
     //**********************************************
+    // GETRAMBANKS
+    //**********************************************
+    if (comand == "GETRAMBANKS") {
+      GetComandParams(s, params);
+      // Serial.println("PARAM: " + params[0]);
+      if (params[0] == "?") {
+        int i = GetRAMBanks();
+        Serial.println("+GETRAMBANKS=" + (String)i);
+      }
+    }
+    //**********************************************
     // DUMPRAM
     //**********************************************
-    if (comand == "DUMPRAM") {
+    if (comand == "DUMPRAMBANK") {
       GetComandParams(s, params);
       // Serial.println("PARAM: " + params[0]);
       if (params[0] != "") {
-        dumpRAM();
+        dumpRAMBank(params[0].toInt());
         Serial.println("+++");
       }
     }
@@ -259,139 +283,11 @@ String ReadSerialComand(){
   return "";
 }
 
-//******************************************************************************************************************//
-//* Numero blocchi ROM
-//******************************************************************************************************************//
-int GetROMBanks() {
-  int romBanks = 2; // Default 32K
-  int romSize = readROMSize();
-  int cartridgeType = readCartType();
-  
-  if (romSize == 1) { romBanks = 4; } 
-  if (romSize == 2) { romBanks = 8; } 
-  if (romSize == 3) { romBanks = 16; } 
-  if (romSize == 4) { romBanks = 32; } 
-  if (romSize == 5 && (cartridgeType == 1 || cartridgeType == 2 || cartridgeType == 3)) { romBanks = 63; } 
-  else if (romSize == 5) { romBanks = 64; } 
-  if (romSize == 6 && (cartridgeType == 1 || cartridgeType == 2 || cartridgeType == 3)) { romBanks = 125; } 
-  else if (romSize == 6) { romBanks = 128; }
-  if (romSize == 7) { romBanks = 256; }
-  if (romSize == 82) { romBanks = 72; }
-  if (romSize == 83) { romBanks = 80; }
-  if (romSize == 84) { romBanks = 96; }
-
-  return romBanks; 
-}
-
-//******************************************************************************************************************//
-//* Dump ROM bank
-//******************************************************************************************************************//
-void dumpROMBank(int bank) {
-    // Serial.println("START DUMP BANK " + (String)bank);
-
-    unsigned int addr = 0;
-    
-    if (bank > 0) {
-      selectROMBank(bank);
-      addr = 0x4000;
-    }
-    
-    for (int i = 0; i <= 0x3FFF; i++) {  
-      byte bval = readByte(addr + i);
-      Serial.println(bval, DEC);
-    }
-    
-    // Serial.println("END DUMP BANK " + (String)bank);
-}
-
-
-//******************************************************************************************************************//
-//* Dump ROM
-//******************************************************************************************************************//
-void dumpROM() {
-    Serial.println("START DUMP");
-
-    unsigned int addr = 0;
-    int romBanks = GetROMBanks();
-    
-    // Read x number of banks
-    for (int y = 1; y < romBanks; y++) {
-      selectROMBank(y);
-
-      if (y > 1) {
-        addr = 0x4000;
-      }
-    
-      for (; addr <= 0x7FFF; addr++) {  
-        byte bval = readByte(addr);
-        Serial.println(bval, DEC);
-      }
-    }
-    
-    Serial.println("END DUMP");
-}
-
-// Select the ROM bank by writing the bank number on the data pins
-void selectROMBank(int bank) {
-  addressWrite(0x2100);
-
-  bankSelect(bank); // Select the bank
-  digitalWrite(GB_WR_PIN, LOW); // WR on
-  digitalWrite(GB_WR_PIN, HIGH); // WR off
-   
-  // Reset outputs to LOW and change back to inputs
-  for (int i = 2; i <= 9; i++) {
-    digitalWrite(i, LOW);
-    pinMode(i, INPUT);
-  }
-}
-
-// Turn on the data lines corresponding to the bank number
-void bankSelect(int bank) {
-  // Change to outputs
-  for (int i = 2; i <= 9; i++) {
-    pinMode(i, OUTPUT);
-  }
-  
-  // Read bits in bank variable
-  for (int z = 9; z >= 2; z--) {
-    if (bitRead(bank, z - 2) == HIGH) {
-      digitalWrite(z, HIGH);
-    }
-    else {
-      digitalWrite(z, LOW);
-    }
-  }
-}
-
-//******************************************************************************************************************//
-//* Numero blocchi RAM
-//******************************************************************************************************************//
-int GetRAMBanks() {
-  int ramBanks = 0; // Default no RAM banks
-  int ramSize = readRAMSize();
-  /*
-  int cartridgeType = readCartType();
-  
-  if (romSize == 1) { romBanks = 4; } 
-  if (romSize == 2) { romBanks = 8; } 
-  if (romSize == 3) { romBanks = 16; } 
-  if (romSize == 4) { romBanks = 32; } 
-  if (romSize == 5 && (cartridgeType == 1 || cartridgeType == 2 || cartridgeType == 3)) { romBanks = 63; } 
-  else if (romSize == 5) { romBanks = 64; } 
-  if (romSize == 6 && (cartridgeType == 1 || cartridgeType == 2 || cartridgeType == 3)) { romBanks = 125; } 
-  else if (romSize == 6) { romBanks = 128; }
-  if (romSize == 7) { romBanks = 256; }
-  if (romSize == 82) { romBanks = 72; }
-  if (romSize == 83) { romBanks = 80; }
-  if (romSize == 84) { romBanks = 96; }
-  */
-  return ramBanks; 
-}
 
 //******************************************************************************************************************//
 //* Lettura di un byte all'indirizzo selezionato (RAM)
 //******************************************************************************************************************//
+/*
 byte readRAMByte(unsigned int address) {
   // Imposta indirizzo
   addressWrite(address);
@@ -416,11 +312,31 @@ byte readRAMByte(unsigned int address) {
   // Serial.println("readByte=" + (String)bval);
   return bval;
 }
+*/
+
+// Turn on the data lines corresponding to the bank number
+/*
+void bankSelectRAM(int bank) {
+  // Change to outputs
+  for (int i = 2; i <= 9; i++) {
+    pinMode(i, OUTPUT);
+  }
+  
+  // Read bits in bank variable
+  for (int z = 9; z >= 2; z--) {
+    if (bitRead(bank, z - 2) == HIGH) {
+      digitalWrite(z, HIGH);
+    }
+    else {
+      digitalWrite(z, LOW);
+    }
+  }
+}
 
 void selectRAMBank(int bank) {
   addressWrite(0x4000);
 
-  bankSelect(bank); // Select the bank
+  bankSelectRAM(bank); // Select the bank
   digitalWrite(GB_WR_PIN, LOW); // WR on
   digitalWrite(GB_WR_PIN, HIGH); // WR off
    
@@ -430,10 +346,12 @@ void selectRAMBank(int bank) {
     pinMode(i, INPUT);
   }
 }
+*/
 
 //******************************************************************************************************************//
 //* Dump RAM
 //******************************************************************************************************************//
+/*
 void dumpRAM() {
     Serial.println("START RAM DUMP");
 
@@ -491,3 +409,4 @@ void dumpRAM() {
 
     Serial.println("END RAM DUMP");
 }
+*/

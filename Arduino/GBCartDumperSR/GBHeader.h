@@ -1,9 +1,11 @@
 /*  
   GBCartDumperSR.ino - Game Boy Cartridge Dumper
-  Copyright (C) 2021 DrVector
+  Copyright (C) 2021-2022 DrVector
   
   Gestione campi di intestazione della cartuccia Game Boy
 */
+
+#include <Arduino.h>
 
 //******************************************************************************************************************//
 //* Lettura titolo del gioco
@@ -30,4 +32,7 @@ int readROMSize();
 //******************************************************************************************************************//
 int readRAMSize();
 
-
+//******************************************************************************************************************//
+//* Lettura supporto per Game Boy Color
+//******************************************************************************************************************//
+int readCGBSupportCode();

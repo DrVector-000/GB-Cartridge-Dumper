@@ -15,7 +15,7 @@ String readCartTitle() {
   char title[11];
   for (int i = 0; i < 11; i++) {
     unsigned int addr = 0x0134 + i;
-    title[i] = (char)readByte(addr);
+    title[i] = (char)readByte(addr, false);
   }
   title[15] = '\0';
 
@@ -29,7 +29,7 @@ String readCartCode() {
   char code[4];
   for (int i = 0; i < 4; i++) {
     unsigned int addr = 0x013F + i;
-    code[i] = (char)readByte(addr);
+    code[i] = (char)readByte(addr, false);
   }
   code[15] = '\0';
 
@@ -40,7 +40,7 @@ String readCartCode() {
 //* Lettura tipo cartuccia
 //******************************************************************************************************************//
 int readCartType() {
-  int cartType = readByte(0x0147);
+  int cartType = readByte(0x0147, false);
 
   return cartType;
 }
@@ -49,7 +49,7 @@ int readCartType() {
 //* Lettura dimensione ROM
 //******************************************************************************************************************//
 int readROMSize() {
-  int romSize = readByte(0x0148);
+  int romSize = readByte(0x0148, false);
 
   return romSize;
 }
@@ -58,8 +58,16 @@ int readROMSize() {
 //* Lettura dimensione RAM
 //******************************************************************************************************************//
 int readRAMSize() {
-  int ramSize = readByte(0x0149);
+  int ramSize = readByte(0x0149, false);
 
   return ramSize;
 }
 
+//******************************************************************************************************************//
+//* Lettura supporto per Game Boy Color
+//******************************************************************************************************************//
+int readCGBSupportCode() {
+  int cgbCode = readByte(0x0143, false);
+
+  return cgbCode;
+}
