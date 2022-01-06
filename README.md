@@ -1,4 +1,4 @@
-# GB Cartridge Dumper
+# Game Boy Cartridge Dumper
 
 Il progetto nasce in un contesto più ampio di conservazione della tecnologia software e hardware dei primi anni dell'informatica applicata a dispositivi di gioco.
 
