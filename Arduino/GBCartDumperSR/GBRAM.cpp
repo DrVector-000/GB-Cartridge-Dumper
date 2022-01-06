@@ -60,11 +60,19 @@ void dumpRAMBank(int bank) {
       writeByte(0x4000, bank);
     }
     
+    // Abilita lettura
+    enableCS(true);
+    enableRead(true);
+
     addr = 0xA000;
     for (; addr <= 0xBFFF; addr++) { 
       byte bval = readByte(addr, true);
       Serial.println(bval, DEC);
     }
+
+    // Disabilita lettura
+    enableCS(false);
+    enableRead(false);
 
     // Disabilita RW RAM
     enableRWRAM(false);

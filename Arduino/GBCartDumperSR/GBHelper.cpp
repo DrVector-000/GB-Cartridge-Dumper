@@ -10,37 +10,76 @@
 #include "SRHelper.h"
 
 //******************************************************************************************************************//
+//* Abilita/Disabilita lettura
+//******************************************************************************************************************//
+void enableRead(bool enable) {
+  if (enable) {
+    // Abilita lettura
+    digitalWrite(GB_RD_PIN, LOW);
+      
+    // Imposta D1/D9 in INPUT
+    for (int i = 2; i <= 9; i++) {
+      pinMode(i, INPUT);
+    }
+  }
+  else {
+    // Disabilita lettura
+    digitalWrite(GB_RD_PIN, HIGH);
+  }
+}
+
+//******************************************************************************************************************//
+//* Abilita/Disabilita CS
+//******************************************************************************************************************//
+void enableCS(bool enable) {
+  if (enable) {
+    digitalWrite(GB_MREQ_PIN, LOW);
+  }
+  else {
+    digitalWrite(GB_MREQ_PIN, HIGH);
+  }
+}
+
+//******************************************************************************************************************//
 //* Lettura di un byte all'indirizzo selezionato dal bus dati della cartuccia
 //******************************************************************************************************************//
 byte readByte(unsigned int address, bool ram) {
   // Imposta indirizzo
   addressWrite(address);
-  
-  // Abilita lettura
-  if (ram) {
-    digitalWrite(GB_MREQ_PIN, LOW);
-  }
-  digitalWrite(GB_RD_PIN, LOW);
-    
-  // Imposta D1/D9 in INPUT
-  for (int i = 2; i <= 9; i++) {
-    pinMode(i, INPUT);
-  }
-  
+
   // Lettura pins D2/D9 (Bus Dati)
   byte bval = 0;
   for (int y = 0; y < 8; y++) {
     bitWrite(bval, y, digitalRead(y + 2));
   }
-  
-  // Disabilita lettura
-  if (ram) {
-    digitalWrite(GB_MREQ_PIN, HIGH);
-  }
-  digitalWrite(GB_RD_PIN, HIGH);
 
   // Serial.println("readByte=" + (String)bval);
   return bval;
+}
+
+//******************************************************************************************************************//
+//* Abilita/Disabilita scrittura
+//******************************************************************************************************************//
+void enableWrite(bool enable) {
+  if (enable) {
+    // Abilita scrittura
+    digitalWrite(GB_WR_PIN, LOW);
+
+    // Imposta D1/D9 in OUTPUT
+    for (int i = 2; i <= 9; i++) {
+      pinMode(i, OUTPUT);
+    }
+  }
+  else {
+    // Disabilita scrittura
+    digitalWrite(GB_WR_PIN, HIGH);
+
+    // Azzera bus dati e ripristina in INPUT
+    for (int i = 2; i <= 9; i++) {
+      digitalWrite(i, LOW);
+      pinMode(i, INPUT);
+    }
+  }
 }
 
 //******************************************************************************************************************//
@@ -51,12 +90,7 @@ void writeByte(unsigned int address, byte data) {
   addressWrite(address);
 
   // Abilita scrittura
-  digitalWrite(GB_WR_PIN, LOW);
-
-  // Imposta D1/D9 in OUTPUT
-  for (int i = 2; i <= 9; i++) {
-    pinMode(i, OUTPUT);
-  }
+  enableWrite(true);
   
   // Scrittura pins D2/D9 (Bus Dati)
   for (int z = 9; z >= 2; z--) {
@@ -69,11 +103,5 @@ void writeByte(unsigned int address, byte data) {
   }
   
   // Disabilita scrittura
-  digitalWrite(GB_WR_PIN, HIGH);
-
-  // Azzera bus dati e ripristina in INPUT
-  for (int i = 2; i <= 9; i++) {
-    digitalWrite(i, LOW);
-    pinMode(i, INPUT);
-  }
+  enableWrite(false);
 }

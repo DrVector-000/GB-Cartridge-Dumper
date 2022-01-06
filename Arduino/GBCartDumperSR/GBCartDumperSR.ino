@@ -44,7 +44,8 @@ void setup() {
   // Azzera lo shift register
   addressWrite(0x0000);
 
-  Serial.begin(115200);
+  //Serial.begin(115200);
+  Serial.begin(500000);
   Serial.println("GAME BOY CARTRIDGE DUMPER V.1.00");
   Serial.println("");
 }
@@ -98,7 +99,7 @@ void ParseComands(String s) {
       GetComandParams(s, params);
       // Serial.println("PARAM: " + params[0]);
       if (params[0] == "?") {
-        Serial.println("+VERSION=0.012b");
+        Serial.println("+VERSION=0.013b");
       }
     }
     //**********************************************

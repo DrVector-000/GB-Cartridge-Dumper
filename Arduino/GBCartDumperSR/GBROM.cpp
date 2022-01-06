@@ -49,10 +49,15 @@ void dumpROMBank(int bank) {
       addr = 0x4000;
     }
     
+    enableRead(true);
+
     for (int i = 0; i <= 0x3FFF; i++) {  
       byte bval = readByte(addr + i, false);
       Serial.println(bval, DEC);
+      //Serial.write(bval);
     }
+    
+    enableRead(false);
     
     // Serial.println("END DUMP BANK " + (String)bank);
 }
