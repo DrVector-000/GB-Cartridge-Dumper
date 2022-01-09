@@ -9,5 +9,12 @@ La componente Hardware utilizza la scheda Arduino Nano (ATMega328P) come control
 
 ![alt text](https://github.com/DrVector-000/GB-Cartridge-Dumper/blob/main/Images/GB%20Cartridge%20Dumper%20001.JPG?raw=true)
 
-## License
+## Funzionalità implementate e previste
+- [x] Lettura Informazioni dalla cartuccia
+- [x] Backup ROM su file
+- [x] Backup RAM (file di salvataggio) su file. In fase di test con vari Memory Controller e GB Camera per salvataggio foto.
+- [ ] Restore RAM.
+- [ ] Restore ROM su Flash Carts.
+
+## Licenza
 [MIT](https://github.com/DrVector-000/GB-Cartridge-Dumper/blob/main/LICENSE.txt)
