@@ -35,7 +35,7 @@ String readCartCode() {
     code[i] = (char)readByte(addr, false);
     enableRead(false);
   }
-  code[15] = '\0';
+  code[4] = '\0';
 
   return code;
 }
@@ -82,4 +82,64 @@ int readCGBSupportCode() {
   enableRead(false);
 
   return cgbCode;
+}
+
+//******************************************************************************************************************//
+//* Lettura codice produttore
+//******************************************************************************************************************//
+String readMakerCode() {
+  char code[2];
+  for (int i = 0; i < 2; i++) {
+    unsigned int addr = 0x0144 + i;
+    enableRead(true);
+    code[i] = (char)readByte(addr, false);
+    enableRead(false);
+  }
+  code[2] = '\0';
+
+  return code;
+}
+
+//******************************************************************************************************************//
+//* Lettura supporto per Super Game Boy
+//******************************************************************************************************************//
+int readSGBSupportCode() {
+  enableRead(true);
+  int sgbCode = readByte(0x0146, false);
+  enableRead(false);
+
+  return sgbCode;
+}
+
+//******************************************************************************************************************//
+//* Lettura codice destinazione
+//******************************************************************************************************************//
+int readDestinationCode() {
+  enableRead(true);
+  int destCode = readByte(0x014A, false);
+  enableRead(false);
+
+  return destCode;
+}
+
+//******************************************************************************************************************//
+//* Lettura vecchio codice produttore
+//******************************************************************************************************************//
+int readOldMakerCode() {
+  enableRead(true);
+  int makCode = readByte(0x014B, false);
+  enableRead(false);
+
+  return makCode;
+}
+
+//******************************************************************************************************************//
+//* Lettura versione ROM
+//******************************************************************************************************************//
+int readROMVersion() {
+  enableRead(true);
+  int romVer = readByte(0x014C, false);
+  enableRead(false);
+
+  return romVer;
 }

@@ -99,7 +99,7 @@ void ParseComands(String s) {
       GetComandParams(s, params);
       // Serial.println("PARAM: " + params[0]);
       if (params[0] == "?") {
-        Serial.println("+VERSION=0.013b");
+        Serial.println("+VERSION=0.014b");
       }
     }
     //**********************************************
@@ -147,6 +147,28 @@ void ParseComands(String s) {
       }
     }
     //**********************************************
+    // GETMAKERCODE
+    //**********************************************
+    if (comand == "GETMAKERCODE") {
+      GetComandParams(s, params);
+      // Serial.println("PARAM: " + params[0]);
+      if (params[0] == "?") {
+        String s = readMakerCode();
+        Serial.println("+GETMAKERCODE=" + s);
+      }
+    }
+    //**********************************************
+    // GETSGBSUPPORT
+    //**********************************************
+    if (comand == "GETSGBSUPPORT") {
+      GetComandParams(s, params);
+      // Serial.println("PARAM: " + params[0]);
+      if (params[0] == "?") {
+        int i = readSGBSupportCode();
+        Serial.println("+GETSGBSUPPORT=" + (String)i);
+      }
+    }
+    //**********************************************
     // GETTYPE
     //**********************************************
     if (comand == "GETTYPE") {
@@ -177,6 +199,39 @@ void ParseComands(String s) {
       if (params[0] == "?") {
         int i = readRAMSize();
         Serial.println("+GETRAMSIZE=" + (String)i);
+      }
+    }
+    //**********************************************
+    // GETDESTCODE
+    //**********************************************
+    if (comand == "GETDESTCODE") {
+      GetComandParams(s, params);
+      // Serial.println("PARAM: " + params[0]);
+      if (params[0] == "?") {
+        int i = readDestinationCode();
+        Serial.println("+GETDESTCODE=" + (String)i);
+      }
+    }
+    //**********************************************
+    // GETOLDMAKERCODE
+    //**********************************************
+    if (comand == "GETOLDMAKERCODE") {
+      GetComandParams(s, params);
+      // Serial.println("PARAM: " + params[0]);
+      if (params[0] == "?") {
+        int i = readOldMakerCode();
+        Serial.println("+GETOLDMAKERCODE=" + (String)i);
+      }
+    }
+    //**********************************************
+    // GETROMVERSION
+    //**********************************************
+    if (comand == "GETROMVERSION") {
+      GetComandParams(s, params);
+      // Serial.println("PARAM: " + params[0]);
+      if (params[0] == "?") {
+        int i = readROMVersion();
+        Serial.println("+GETROMVERSION=" + (String)i);
       }
     }
     //**********************************************
