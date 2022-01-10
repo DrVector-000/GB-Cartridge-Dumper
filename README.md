@@ -16,5 +16,8 @@ La componente Hardware utilizza la scheda Arduino Nano (ATMega328P) come control
 - [ ] Restore RAM.
 - [ ] Restore ROM su Flash Carts.
 
+## Compatibilità
+[Lista compatibilità](https://github.com/DrVector-000/GB-Cartridge-Dumper/blob/main/Docs/Compatibility%20List.txt)
+
 ## Licenza
 [MIT](https://github.com/DrVector-000/GB-Cartridge-Dumper/blob/main/LICENSE.txt)
