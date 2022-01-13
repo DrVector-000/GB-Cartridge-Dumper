@@ -6,6 +6,7 @@ Blades of Steel					|  00	| DMG-UB-ITA	| DMG-BEAN-02			| MBC1	|   X	|   X	|   N	
 Chase H.Q.					|  01	| DMG-HQ-ITA	| DMG-BEAN-02			| MBC1	|   X	|   X	|   N	|   N
 Duffy Duck - The Marvin Missions		|  00	| DMG-YS-UKV-2	| DMG-BEAN-10			| MBC1	|   X	|   X	|   N	|   N
 F-1 Race					|  01	| DMG-F1-NOE	| DMG-GDAN-03			| MBC2	|   X	|   X	|   -	|   -
+F1 Racing Championship				|  00	| CGB-AEQP-EUR	| DMG-A08-10			| MBC5	|   X	|   X	|   X	|   -
 Football					|  00	| DMG-FL-USA	| DMG-BEAN-01			| MBC1	|   X	|   X	|   N	|   N
 Hyper Dunk					|  00	| DMG-DW-NOE	| DMG-BEAN-02			| MBC1	|   X	|   X	|   N	|   N
 Mega Man					|  00	| DMG-RW-ITA	| DMG-BEAN-02			| MBC1	|   X	|   X	|   N	|   N
@@ -18,8 +19,8 @@ Tennis						|  00	| DMG-TN-EUR	| DMG-AAA-10			|  N	|   X	|   X	|   N	|   N
 Tennis						|  00	| DMG-TN-NOE	| DMG-AAA-03			|  N	|   X	|   X	|   N	|   N
 Tetris						|  01	| DMG-TR-ITA	| AAC S				|  N	|   X	|   X	|   N	|   N
 Tetris						|  01	| DMG-TR-ITA	| DMG-AAA-03			|  N	|   X	|   X	|   N	|   N
-Tomb Raider (Repro)				|  00	| CGB-AT9E-USA	| SD007_TSOP_48BALL_V10		| MBC5	|   X	|   X	|   X	|   -
 The Jungle Book					|  00	| DMG-J7-EUR	| DMG-BEAN-10			| MBC1	|   X	|   X	|   N	|   N
+Tomb Raider (Repro)				|  00	| CGB-AT9E-USA	| SD007_TSOP_48BALL_V10		| MBC5	|   X	|   X	|   X	|   -
 World Cup					|  00	| DMG-NC-ITA	| DMG-BEAN-02			| MBC1	|   X	|   X	|   N	|   N
 
 
