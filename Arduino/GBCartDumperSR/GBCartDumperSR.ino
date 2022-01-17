@@ -44,7 +44,7 @@ void setup() {
   // Azzera lo shift register
   addressWrite(0x0000);
 
-  //Serial.begin(115200);
+  // Serial.begin(115200);
   Serial.begin(500000);
   Serial.println("GAME BOY CARTRIDGE DUMPER V.1.00");
   Serial.println("");
@@ -99,7 +99,7 @@ void ParseComands(String s) {
       GetComandParams(s, params);
       // Serial.println("PARAM: " + params[0]);
       if (params[0] == "?") {
-        Serial.println("+VERSION=0.014b");
+        Serial.println("+VERSION=0.015b");
       }
     }
     //**********************************************
@@ -268,7 +268,7 @@ void ParseComands(String s) {
       }
     }
     //**********************************************
-    // DUMPRAM
+    // DUMPRAMBANK
     //**********************************************
     if (comand == "DUMPRAMBANK") {
       GetComandParams(s, params);
@@ -276,6 +276,17 @@ void ParseComands(String s) {
       if (params[0] != "") {
         dumpRAMBank(params[0].toInt());
         Serial.println("+++");
+      }
+    }
+    //**********************************************
+    // WRiTERAMBANK
+    //**********************************************
+    if (comand == "WRITERAMBANK") {
+      GetComandParams(s, params);
+      // Serial.println("PARAM: " + params[0]);
+      if (params[0] != "") {
+        writeRAMBank(params[0].toInt());
+        //Serial.println("+++");
       }
     }
   }

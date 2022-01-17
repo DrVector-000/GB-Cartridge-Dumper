@@ -1,4 +1,4 @@
-# Game Boy Cartridge Dumper
+﻿# Game Boy Cartridge Dumper
 
 Il progetto nasce in un contesto più ampio di conservazione della tecnologia software e hardware dei primi anni dell'informatica applicata a dispositivi di gioco.
 
@@ -12,8 +12,13 @@ La componente Hardware utilizza la scheda Arduino Nano (ATMega328P) come control
 ## Funzionalità implementate e previste
 - [x] Lettura Informazioni dalla cartuccia.
 - [x] Backup ROM su file.
-- [x] Backup RAM (salvataggio del gioco) su file. In fase di test con vari Memory Controller e GB Camera per salvataggio foto.
-- [ ] Restore RAM.
+- [x] Backup RAM salvataggio del gioco su file.
+	- [x] Memory Bank Controller MBC5. Primi test passati con successo.
+	- [ ] Altri MBC
+- [ ] Backup RAM GB Camera su file.
+- [X] Restore RAM.
+	- [x] Memory Bank Controller MBC5. Primi test passati con successo.
+	- [ ] Altri MBC
 - [ ] Restore ROM su Flash Carts.
 
 ## Compatibilità

@@ -20,7 +20,7 @@ Tennis						|  00	| DMG-TN-NOE	| DMG-AAA-03			|  N	|   X	|   X	|   N	|   N
 Tetris						|  01	| DMG-TR-ITA	| AAC S				|  N	|   X	|   X	|   N	|   N
 Tetris						|  01	| DMG-TR-ITA	| DMG-AAA-03			|  N	|   X	|   X	|   N	|   N
 The Jungle Book					|  00	| DMG-J7-EUR	| DMG-BEAN-10			| MBC1	|   X	|   X	|   N	|   N
-Tomb Raider (Repro)				|  00	| CGB-AT9E-USA	| SD007_TSOP_48BALL_V10		| MBC5	|   X	|   X	|   X	|   -
+Tomb Raider (Repro)				|  00	| CGB-AT9E-USA	| SD007_TSOP_48BALL_V10		| MBC5	|   X	|   X	|   X	|   X
 World Cup					|  00	| DMG-NC-ITA	| DMG-BEAN-02			| MBC1	|   X	|   X	|   N	|   N
 
 
@@ -34,4 +34,4 @@ X = Yes
 N = Unavailable
 - = Not Implemented Yet
 
-Update: 2022/01/11
+Update: 2022/01/16

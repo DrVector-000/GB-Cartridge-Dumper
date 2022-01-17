@@ -79,3 +79,53 @@ void dumpRAMBank(int bank) {
 
     // Serial.println("END DUMP RAM BANK " + (String)bank);
 }
+
+//******************************************************************************************************************//
+//* Write RAM bank
+//******************************************************************************************************************//
+void writeRAMBank(int bank) {
+    // Serial.println("START WRITE RAM BANK " + (String)bank);
+
+    unsigned int addr = 0;
+    
+    // Disattiva READ, WRITE e MREQ
+    digitalWrite(GB_RD_PIN, HIGH); // RD off
+    digitalWrite(GB_WR_PIN, HIGH); // WR off
+    digitalWrite(GB_MREQ_PIN, HIGH); // MREQ off
+
+    // Abilita RW RAM
+    enableRWRAM(true);
+    
+    // Seleziona il banco
+    if (bank > 0) {
+      writeByte(0x4000, bank);
+    }
+    
+    // Abilita scrittura
+    enableCS(true);
+    enableWrite(true);
+
+    addr = 0xA000;
+    byte i = 0;
+    for (;;) {
+      if (Serial.available() > 0) {
+        i = Serial.read();
+
+        writeByte(addr, i);
+        
+        addr++;
+        if (addr > 0xBFFF) {
+          break;
+        }
+      }
+    }
+
+    // Disabilita scrittura
+    enableCS(false);
+    enableWrite(false);
+
+    // Disabilita RW RAM
+    enableRWRAM(false);
+
+    // Serial.println("END WRITE RAM BANK " + (String)bank);
+}
