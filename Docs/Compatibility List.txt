@@ -27,7 +27,7 @@ Tennis						|  00	| DMG-TN-EUR	| DMG-AAA-10			|  N	|   X	|   X	|   N	|   N
 Tennis						|  00	| DMG-TN-NOE	| DMG-AAA-03			|  N	|   X	|   X	|   N	|   N
 Tetris						|  01	| DMG-TR-ITA	| AAC S				|  N	|   X	|   X	|   N	|   N
 Tetris						|  01	| DMG-TR-ITA	| DMG-AAA-03			|  N	|   X	|   X	|   N	|   N
-The Emperor's New Groove			|  00	| CGB-BENP-EUR	| DMG-A08-10			| MBC5	|   X	|   X	|   X	|   -
+The Emperor's New Groove			|  00	| CGB-BENP-EUR	| DMG-A08-10			| MBC5	|   X	|   X	|   X	|   X
 The Fish Files					|  00	| CGB-BFQP-EUR	| DMG-A08-10			| MBC5	|   X	|   X	|   X	|   X
 The Jungle Book					|  00	| DMG-J7-EUR	| DMG-BEAN-10			| MBC1	|   X	|   X	|   N	|   N
 Tomb Raider (Repro)				|  00	| CGB-AT9E-USA	| SD007_TSOP_48BALL_V10		| MBC5	|   X	|   X	|   X	|   X
