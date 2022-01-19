@@ -4,7 +4,9 @@ Alien Olympics					|  01	| DMG-ALGP-UKV	| DMG-BEAN-10			| MBC1	|   X	|   X	|   N
 Army Men					|  00	| CGB-AVCP-EUR	| DMG-A07-01			| MBC5	|   X	|   X	|   N	|   N
 Baseball					|  00	| DMG-BS-GPS	| DMG-BEAN[K]-02		| MBC1	|   X	|   X	|   N	|   N
 Blades of Steel					|  00	| DMG-UB-ITA	| DMG-BEAN-02			| MBC1	|   X	|   X	|   N	|   N
-Caesar's Palace II				|  00	| CGB-AI2P-EUR	| DMG-A06-01			| MBC5	|   X	|   X	|   -	|   -Chase H.Q.					|  01	| DMG-HQ-ITA	| DMG-BEAN-02			| MBC1	|   X	|   X	|   N	|   N
+Caesar's Palace II				|  00	| CGB-AI2P-EUR	| DMG-A06-01			| MBC5	|   X	|   X	|   X	|   X
+Championship Motocross 2001			|  00	| CGB-BCMP-EUR	| DMG-A07-01			| MBC5	|   X	|   X	|   N	|   N
+Chase H.Q.					|  01	| DMG-HQ-ITA	| DMG-BEAN-02			| MBC1	|   X	|   X	|   N	|   N
 David Beckham Soccer				|  00	| CGB-BJ2P-EUR	| DMG-A06-01			| MBC5	|   X	|   X	|   -	|   -
 Diva Starz					|  00	| CGB-BD8P-EUR	| DMG-A07-01			| MBC5	|   X	|   X	|   N	|   N
 Duffy Duck - The Marvin Missions		|  00	| DMG-YS-UKV-2	| DMG-BEAN-10			| MBC1	|   X	|   X	|   N	|   N
@@ -13,6 +15,7 @@ F1 Racing Championship				|  00	| CGB-AEQP-EUR	| DMG-A08-10			| MBC5	|   X	|   X
 Football					|  00	| DMG-FL-USA	| DMG-BEAN-01			| MBC1	|   X	|   X	|   N	|   N
 Hyper Dunk					|  00	| DMG-DW-NOE	| DMG-BEAN-02			| MBC1	|   X	|   X	|   N	|   N
 Mega Man					|  00	| DMG-RW-ITA	| DMG-BEAN-02			| MBC1	|   X	|   X	|   N	|   N
+NHL 2000					|  00	| DMG-ANRP-EUR	| DMG-A07-01			| MBC5	|   X	|   X	|   N	|   N
 Nigel Mansell's World Championship Racing	|  00	| DMG-WC-UKV	| DMG-BEAN-02			| MBC1	|   X	|   X	|   N	|   N
 Obelix						|  00	| DMG-AXOP-FAH	| DMG-BEAN-10			| MBC1	|   X	|   X	|   N	|   N
 Pocahontas					|  00	| DMG-AHOP-EUR	| DMG-BEAN-10			| MBC1	|   X	|   X	|   N	|   N
@@ -42,4 +45,4 @@ X = Yes
 N = Unavailable
 - = Not Implemented or Not Tested Yet
 
-Update: 2022/01/18
+Update: 2022/01/19
