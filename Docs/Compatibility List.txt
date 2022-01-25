@@ -14,6 +14,7 @@ F-1 Race					|  01	| DMG-F1-NOE	| DMG-GDAN-03			| MBC2	|   X	|   X	|   -	|   -
 F1 Racing Championship				|  00	| CGB-AEQP-EUR	| DMG-A08-10			| MBC5	|   X	|   X	|   X	|   -
 Football					|  00	| DMG-FL-USA	| DMG-BEAN-01			| MBC1	|   X	|   X	|   N	|   N
 Hyper Dunk					|  00	| DMG-DW-NOE	| DMG-BEAN-02			| MBC1	|   X	|   X	|   N	|   N
+Indiana Jones and the Infernal Machine		|  00	| CGB-BIJP-EUR	| DMG-A07-01			| MBC5	|   X	|   X	|   N	|   N
 Mega Man					|  00	| DMG-RW-ITA	| DMG-BEAN-02			| MBC1	|   X	|   X	|   N	|   N
 NHL 2000					|  00	| DMG-ANRP-EUR	| DMG-A07-01			| MBC5	|   X	|   X	|   N	|   N
 Nigel Mansell's World Championship Racing	|  00	| DMG-WC-UKV	| DMG-BEAN-02			| MBC1	|   X	|   X	|   N	|   N
@@ -45,4 +46,4 @@ X = Yes
 N = Unavailable
 - = Not Implemented or Not Tested Yet
 
-Update: 2022/01/19
+Update: 2022/01/25
