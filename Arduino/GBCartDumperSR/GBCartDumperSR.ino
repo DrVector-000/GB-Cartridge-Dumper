@@ -99,7 +99,7 @@ void ParseComands(String s) {
       GetComandParams(s, params);
       // Serial.println("PARAM: " + params[0]);
       if (params[0] == "?") {
-        Serial.println("+VERSION=0.015b");
+        Serial.println("+VERSION=0.016b");
       }
     }
     //**********************************************
@@ -253,7 +253,7 @@ void ParseComands(String s) {
       // Serial.println("PARAM: " + params[0]);
       if (params[0] != "") {
         dumpROMBank(params[0].toInt());
-        Serial.println("+++");
+        //Serial.println("+++");
       }
     }
     //**********************************************
@@ -287,6 +287,17 @@ void ParseComands(String s) {
       if (params[0] != "") {
         writeRAMBank(params[0].toInt());
         //Serial.println("+++");
+      }
+    }
+    //**********************************************
+    // DUMPRAMMBC2
+    //**********************************************
+    if (comand == "DUMPRAMMBC2") {
+      GetComandParams(s, params);
+      // Serial.println("PARAM: " + params[0]);
+      if (params[0] == "1") {
+        dumpRAMMBC2();
+        Serial.println("+++");
       }
     }
   }

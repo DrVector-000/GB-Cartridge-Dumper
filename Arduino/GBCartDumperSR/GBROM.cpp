@@ -51,12 +51,20 @@ void dumpROMBank(int bank) {
     
     enableRead(true);
 
+    byte buffer[256];
+    int index = 0;
     for (int i = 0; i <= 0x3FFF; i++) {  
       byte bval = readByte(addr + i, false);
-      Serial.println(bval, DEC);
-      //Serial.write(bval);
+      buffer[index] = bval;
+      index ++;
+      //Serial.println(bval, DEC);
+      
+      if (index == 256) {
+        Serial.write(buffer, 256);
+        index = 0;
+      }
     }
-    
+
     enableRead(false);
     
     // Serial.println("END DUMP BANK " + (String)bank);

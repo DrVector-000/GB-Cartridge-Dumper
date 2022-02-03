@@ -59,7 +59,7 @@ void dumpRAMBank(int bank) {
     if (bank > 0) {
       writeByte(0x4000, bank);
     }
-    
+
     // Abilita lettura
     enableCS(true);
     enableRead(true);
@@ -67,6 +67,46 @@ void dumpRAMBank(int bank) {
     addr = 0xA000;
     for (; addr <= 0xBFFF; addr++) { 
       byte bval = readByte(addr, true);
+      Serial.println(bval, DEC);
+    }
+
+    // Disabilita lettura
+    enableCS(false);
+    enableRead(false);
+
+    // Disabilita RW RAM
+    enableRWRAM(false);
+
+    // Serial.println("END DUMP RAM BANK " + (String)bank);
+}
+
+//******************************************************************************************************************//
+//* Dump RAM MBC2
+//******************************************************************************************************************//
+void dumpRAMMBC2() {
+    // Serial.println("START DUMP RAM BANK " + (String)bank);
+
+    unsigned int addr = 0;
+    
+    // Disattiva READ, WRITE e MREQ
+    digitalWrite(GB_RD_PIN, HIGH); // RD off
+    digitalWrite(GB_WR_PIN, HIGH); // WR off
+    digitalWrite(GB_MREQ_PIN, HIGH); // MREQ off
+
+    // Abilita RW RAM
+    enableRWRAM(true);
+    
+    // Abilita lettura
+    enableCS(true);
+    enableRead(true);
+
+    addr = 0xA000;
+    for (; addr <= 0xA1FF; addr++) { 
+      byte bval1 = readByte(addr, true);
+      addr++;
+      byte bval2 = readByte(addr, true);
+
+      byte bval = (bval1 << 4) + (bval2 & 0xF);      
       Serial.println(bval, DEC);
     }
 
