@@ -2,6 +2,7 @@ Game Title					|  Ver	| Game Code	| PCB MODEL			| MBC	|  IR	| ROMR	| RAMR	| RAMW
 ----------------------------------------------------------------------------------------------------------------------------------------------
 Alien Olympics					|  01	| DMG-ALGP-UKV	| DMG-BEAN-10			| MBC1	|   X	|   X	|   N	|   N
 Army Men					|  00	| CGB-AVCP-EUR	| DMG-A07-01			| MBC5	|   X	|   X	|   N	|   N
+Asteroids					|  00	| DMG-AARP-EUR	| DMG-A07-01			| MBC5	|   X	|   X	|   N	|   N
 Baseball					|  00	| DMG-BS-GPS	| DMG-BEAN[K]-02		| MBC1	|   X	|   X	|   N	|   N
 Blades of Steel					|  00	| DMG-UB-ITA	| DMG-BEAN-02			| MBC1	|   X	|   X	|   N	|   N
 Caesar's Palace II				|  00	| CGB-AI2P-EUR	| DMG-A06-01			| MBC5	|   X	|   X	|   X	|   X
@@ -16,6 +17,7 @@ Football					|  00	| DMG-FL-USA	| DMG-BEAN-01			| MBC1	|   X	|   X	|   N	|   N
 Hyper Dunk					|  00	| DMG-DW-NOE	| DMG-BEAN-02			| MBC1	|   X	|   X	|   N	|   N
 Indiana Jones and the Infernal Machine		|  00	| CGB-BIJP-EUR	| DMG-A07-01			| MBC5	|   X	|   X	|   N	|   N
 Mega Man					|  00	| DMG-RW-ITA	| DMG-BEAN-02			| MBC1	|   X	|   X	|   N	|   N
+Men In Black The Series				|  00	| DMG-AMNP-EUR	| DMG-A07-01			| MBC5	|   X	|   X	|   N	|   N
 NHL 2000					|  00	| DMG-ANRP-EUR	| DMG-A07-01			| MBC5	|   X	|   X	|   N	|   N
 Nigel Mansell's World Championship Racing	|  00	| DMG-WC-UKV	| DMG-BEAN-02			| MBC1	|   X	|   X	|   N	|   N
 Obelix						|  00	| DMG-AXOP-FAH	| DMG-BEAN-10			| MBC1	|   X	|   X	|   N	|   N
@@ -33,7 +35,9 @@ The Fish Files					|  00	| CGB-BFQP-EUR	| DMG-A08-10			| MBC5	|   X	|   X	|   X	
 The Jungle Book					|  00	| DMG-J7-EUR	| DMG-BEAN-10			| MBC1	|   X	|   X	|   N	|   N
 Tomb Raider (Repro)				|  00	| CGB-AT9E-USA	| SD007_TSOP_48BALL_V10		| MBC5	|   X	|   X	|   X	|   X
 V-Rally Championship Edition			|  00	| CGB-AVYP-UKV	| DMG-A07-01			| MBC5	|   X	|   X	|   N	|   N
+V-Rally Championship Edition			|  00	| DMG-AVLP-EUR	| DMG-BEAN-10			| MBC1	|   X	|   X	|   N	|   N
 World Cup					|  00	| DMG-NC-ITA	| DMG-BEAN-02			| MBC1	|   X	|   X	|   N	|   N
+World Cup 98					|  00	| DMG-A8WP-EUU	| DMG-BEAN-10			| MBC1	|   X	|   X	|   N	|   N
 
 
 MBC = Memory Bank Controller
@@ -46,4 +50,4 @@ X = Yes
 N = Unavailable
 - = Not Implemented or Not Tested Yet
 
-Update: 2022/01/25
+Update: 2022/02/01
