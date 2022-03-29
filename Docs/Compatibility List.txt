@@ -6,6 +6,7 @@ Asteroids					|  00	| DMG-AARP-EUR	| DMG-A07-01			| MBC5	|   X	|   X	|   N	|   N
 Baseball					|  00	| DMG-BS-GPS	| DMG-BEAN[K]-02		| MBC1	|   X	|   X	|   N	|   N
 Blades of Steel					|  00	| DMG-UB-ITA	| DMG-BEAN-02			| MBC1	|   X	|   X	|   N	|   N
 Caesar's Palace II				|  00	| CGB-AI2P-EUR	| DMG-A06-01			| MBC5	|   X	|   X	|   X	|   X
+Casper						|  00	| DMG-ACEE-USA	| DMG-BEAN-02			| MBC1	|   X	|   X	|   N	|   N
 Championship Motocross 2001			|  00	| CGB-BCMP-EUR	| DMG-A07-01			| MBC5	|   X	|   X	|   N	|   N
 Chase H.Q.					|  01	| DMG-HQ-ITA	| DMG-BEAN-02			| MBC1	|   X	|   X	|   N	|   N
 David Beckham Soccer				|  00	| CGB-BJ2P-EUR	| DMG-A06-01			| MBC5	|   X	|   X	|   -	|   -
@@ -16,6 +17,7 @@ F1 Racing Championship				|  00	| CGB-AEQP-EUR	| DMG-A08-10			| MBC5	|   X	|   X
 Football					|  00	| DMG-FL-USA	| DMG-BEAN-01			| MBC1	|   X	|   X	|   N	|   N
 Hyper Dunk					|  00	| DMG-DW-NOE	| DMG-BEAN-02			| MBC1	|   X	|   X	|   N	|   N
 Indiana Jones and the Infernal Machine		|  00	| CGB-BIJP-EUR	| DMG-A07-01			| MBC5	|   X	|   X	|   N	|   N
+Lamborghini American Challenge			|  00	| DMG-L7-FAH	| DMG-BEAN-02			| MBC1	|   X	|   X	|   N	|   N
 Mega Man					|  00	| DMG-RW-ITA	| DMG-BEAN-02			| MBC1	|   X	|   X	|   N	|   N
 Men In Black The Series				|  00	| DMG-AMNP-EUR	| DMG-A07-01			| MBC5	|   X	|   X	|   N	|   N
 NHL 2000					|  00	| DMG-ANRP-EUR	| DMG-A07-01			| MBC5	|   X	|   X	|   N	|   N
