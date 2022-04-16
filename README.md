@@ -21,7 +21,7 @@ La componente Hardware utilizza la scheda Arduino Nano (ATMega328P) come control
 	- [ ] Altri MBC
 - [ ] Restore ROM su Flash Carts.
 
-![alt text](https://github.com/DrVector-000/GB-Cartridge-Dumper/blob/main/Images/GB%20Cartridge%20Dumper%20002.JPG?raw=true)
+![alt text](https://github.com/DrVector-000/GB-Cartridge-Dumper/blob/main/Images/GB%20Cartridge%20Dumper%20002.jpg?raw=true)
 
 ## Compatibilità
 [Lista compatibilità](https://github.com/DrVector-000/GB-Cartridge-Dumper/blob/main/Docs/Compatibility%20List.txt)
