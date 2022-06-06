@@ -1,0 +1,29 @@
+Tomb Raider (CGB-AT9E-USA) - 2000 Eidos Interactive Limited - (ENG-ESP-DEU-FRA-ITA)
+
+ROM Information
+---------------
+Game Title: TOMB RAIDER
+
+Game Code: AT9E
+
+Cassette Type: [0x1B] MBC5+RAM+BATTERY
+
+CGB Support: [0x80] CGB Exclusive
+
+Maker Code: [78] THQ
+
+SGB Support: [0x00] SGB not Supported
+
+ROM Size: [0x07] 4 MByte
+
+RAM Size: [0x02] 8 Kbytes
+
+Destination: [0x01] Not Japanese
+
+ROM Version: 00
+
+
+Label & PCB Information
+-----------------------
+Label Code: None
+PCB Model: "SD007_TSOP_48BALL_V10"
