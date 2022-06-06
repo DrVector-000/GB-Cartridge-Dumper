@@ -1,0 +1,31 @@
+Indiana Jones and the Infernal Machine (CGB-BIJP-EUR) - 2001 LucasArts Entertainment Company LLC - (ENG-FRA-DEU)
+
+ROM Information
+---------------
+Game Title: INDIANA JON
+
+Game Code: BIJE
+
+Cassette Type: [0x19] MBC5
+
+CGB Support: [0x80] CGB Exclusive
+
+Maker Code: [78] THQ
+
+SGB Support: [0x00] SGB not Supported
+
+ROM Size: [0x05] 1 MByte
+
+RAM Size: [0x00] None
+
+Destination: [0x01] Not Japanese
+
+ROM Version: 00
+
+
+Label & PCB Information
+-----------------------
+Label Code: ??
+PCB Model: "DMG-A07-01", "03/01", "MB", "1"
+Memory Controller (MBC): "MBC5", "P-2", "05 1U4M"
+ROM: "CGB-BIJP-0 FI", "M538011E-3H" "1115423"
