@@ -15,11 +15,13 @@ La componente Hardware utilizza la scheda Arduino Nano (ATMega328P) come control
 - [x] Backup RAM salvataggio del gioco su file.
 	- [x] Memory Bank Controller MBC5.
 	- [x] Memory Bank Controller MBC3. In fase di test.
+	- [x] Memory Bank Controller MBC1. In fase di test.
 	- [ ] Altri MBC
 - [ ] Backup RAM GB Camera su file.
 - [X] Restore RAM.
 	- [x] Memory Bank Controller MBC5.
 	- [x] Memory Bank Controller MBC3. In fase di test.
+	- [x] Memory Bank Controller MBC1. In fase di test.
 	- [ ] Altri MBC
 - [ ] Restore ROM su Flash Carts.
 
