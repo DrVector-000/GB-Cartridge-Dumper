@@ -29,6 +29,7 @@ Rip-Tide Racer					|  00	| DMG-AXYP-EUR	| DMG-A07-01			| MBC5	|   X	|   X	|   N	
 Snow White and the Seven Dwarfs			|  00	| CGB-B7DP-EUR	| DMG-A07-01			| MBC5	|   X	|   X	|   N	|   N
 Space Invaders					|  00	| DMG-SP-ITA	| DMG-BEAN-02			| MBC1	|   X	|   X	|   N	|   N
 Super Mario Land				|  01	| DMG-ML-EUR	| DMG-BEAN-10			| MBC1	|   X	|   X	|   N	|   N
+Tamagotchi					|  00	| DMG-ATAP-NOE	| DMG-DECN-10			| MBC1	|   X	|   X	|   X	|   X
 Tennis						|  00	| DMG-TN-EUR	| DMG-AAA-10			|  N	|   X	|   X	|   N	|   N
 Tennis						|  00	| DMG-TN-NOE	| DMG-AAA-03			|  N	|   X	|   X	|   N	|   N
 Tetris						|  01	| DMG-TR-ITA	| AAC S				|  N	|   X	|   X	|   N	|   N
@@ -53,4 +54,4 @@ X = Yes
 N = Unavailable
 - = Not Implemented or Not Tested Yet
 
-Update: 2022/02/01
+Update: 2022/07/31
