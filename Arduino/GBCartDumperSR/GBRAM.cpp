@@ -54,18 +54,20 @@ void dumpRAMBank(int bank) {
 
     // Abilita RW RAM
     enableRWRAM(true);
-    
+
     // Seleziona il banco
     if (bank > 0) {
       writeByte(0x4000, bank);
     }
 
     // Abilita lettura
+    enableWrite(false);
     enableCS(true);
     enableRead(true);
 
-    addr = 0xA000;
-    for (; addr <= 0xBFFF; addr++) { 
+    //addr = 0xA000;
+    //for (; addr <= 0xBFFF; addr++) { 
+    for (addr = 0xA000; addr < 0xC000; addr++) { 
       byte bval = readByte(addr, true);
       Serial.println(bval, DEC);
     }
@@ -88,6 +90,9 @@ void dumpRAMMBC2() {
 
     unsigned int addr = 0;
     
+    // MBC2 Fix
+    readByte(0x0134, false);
+
     // Disattiva READ, WRITE e MREQ
     digitalWrite(GB_RD_PIN, HIGH); // RD off
     digitalWrite(GB_WR_PIN, HIGH); // WR off
@@ -97,6 +102,7 @@ void dumpRAMMBC2() {
     enableRWRAM(true);
     
     // Abilita lettura
+    enableWrite(false);
     enableCS(true);
     enableRead(true);
 
