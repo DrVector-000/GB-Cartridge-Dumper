@@ -24,6 +24,7 @@ NHL 2000					|  00	| DMG-ANRP-EUR	| DMG-A07-01			| MBC5	|   X	|   X	|   N	|   N
 Nigel Mansell's World Championship Racing	|  00	| DMG-WC-UKV	| DMG-BEAN-02			| MBC1	|   X	|   X	|   N	|   N
 Obelix						|  00	| DMG-AXOP-FAH	| DMG-BEAN-10			| MBC1	|   X	|   X	|   N	|   N
 Pocahontas					|  00	| DMG-AHOP-EUR	| DMG-BEAN-10			| MBC1	|   X	|   X	|   N	|   N
+Pokemon Versione Argento			|  00	| DMG-AAXI-ITA-1| DMG-KGDU-10			| MBC3	|   X	|   X	|   X	|   X
 Pooh & Tigger's Hunny Safari			|  00	| CGB-BP8P-EUR	| DMG-A09-10			| MBC5	|   X	|   X	|   N	|   N
 Rip-Tide Racer					|  00	| DMG-AXYP-EUR	| DMG-A07-01			| MBC5	|   X	|   X	|   N	|   N
 Snow White and the Seven Dwarfs			|  00	| CGB-B7DP-EUR	| DMG-A07-01			| MBC5	|   X	|   X	|   N	|   N
