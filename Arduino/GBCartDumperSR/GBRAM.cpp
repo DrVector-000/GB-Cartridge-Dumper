@@ -56,9 +56,9 @@ void dumpRAMBank(int bank) {
     enableRWRAM(true);
 
     // Seleziona il banco
-    if (bank > 0) {
+    //if (bank > 0) {
       writeByte(0x4000, bank);
-    }
+    //}
 
     // Abilita lettura
     enableWrite(false);
@@ -106,13 +106,17 @@ void dumpRAMMBC2() {
     enableCS(true);
     enableRead(true);
 
-    addr = 0xA000;
-    for (; addr <= 0xA1FF; addr++) { 
+    //addr = 0xA000;
+    //for (; addr <= 0xA1FF; addr++) { 
+    for (addr = 0xA000; addr < 0xA200; addr++) { 
+      /*
       byte bval1 = readByte(addr, true);
       addr++;
       byte bval2 = readByte(addr, true);
 
-      byte bval = (bval1 << 4) + (bval2 & 0xF);      
+      byte bval = (bval1 << 4) + (bval2 & 0xF);
+      */
+      byte bval = readByte(addr, true);
       Serial.println(bval, DEC);
     }
 
@@ -143,13 +147,13 @@ void writeRAMBank(int bank) {
     enableRWRAM(true);
     
     // Seleziona il banco
-    if (bank > 0) {
+    //if (bank > 0) {
       writeByte(0x4000, bank);
-    }
+    //}
     
     // Abilita scrittura
     enableCS(true);
-    enableWrite(true);
+    //enableWrite(true);
 
     addr = 0xA000;
     byte i = 0;
